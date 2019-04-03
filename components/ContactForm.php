@@ -1,7 +1,7 @@
-<?php namespace GrofGraf\ContactMe\Components;
+<?php namespace Zorca\ContactMe\Components;
 
 use Cms\Classes\ComponentBase;
-use GrofGraf\ContactMe\Models\Settings;
+use Zorca\ContactMe\Models\Settings;
 use Input;
 use Mail;
 use Validator;
@@ -112,7 +112,7 @@ class ContactForm extends ComponentBase
     }
 
     public function sendMail(){
-      Mail::send('grofgraf.contactme::emails.message', post(), function($m){
+      Mail::send('zorca.contactme::emails.message', post(), function($m){
         $m->to(Settings::get('email'), Settings::get('name'))
           ->subject('Contact from website')
           ->replyTo(post('email'), post('name'));
@@ -130,7 +130,7 @@ class ContactForm extends ComponentBase
       $html = str_replace("{{email}}", post('email'), $html);
       $html = str_replace("{{ message_content }}", post('message_content'), $html);
       $html = str_replace("{{message_content}}", post('message_content'), $html);
-      Mail::send('grofgraf.contactme::emails.auto-reply', array_merge(post(), array('auto_reply' => $html)), function($m){
+      Mail::send('zorca.contactme::emails.auto-reply', array_merge(post(), array('auto_reply' => $html)), function($m){
         $m->to(post('email'), post('name'))
           ->subject(Settings::instance()->auto_reply_subject);
         if(Settings::get('enable_auto_reply_attachment') && Input::file('attachment')){
@@ -140,11 +140,11 @@ class ContactForm extends ComponentBase
     }
 
     public function mailgunSubscribeExist(){
-      return class_exists("\GrofGraf\MailgunSubscribe\Components\SubscribeForm");
+      return class_exists("\Zorca\MailgunSubscribe\Components\SubscribeForm");
     }
 
     public function subscribeToMaillist(){
       $maillist = Settings::get('maillist_title') ?: null;
-      \GrofGraf\MailgunSubscribe\Components\SubscribeForm::subscribe(post('email'), $maillist, post('name'), 0);
+      \Zorca\MailgunSubscribe\Components\SubscribeForm::subscribe(post('email'), $maillist, post('name'), 0);
     }
 }

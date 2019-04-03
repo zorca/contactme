@@ -1,4 +1,4 @@
-<?php namespace GrofGraf\ContactMe\Models;
+<?php namespace Zorca\ContactMe\Models;
 
 use Model;
 
@@ -47,7 +47,7 @@ class Settings extends Model
     public $settingsFields = 'fields.yaml';
 
     public function filterFields($fields, $context = null){
-      if (class_exists("\GrofGraf\MailgunSubscribe\Components\SubscribeForm")) {
+      if (class_exists("\Zorca\MailgunSubscribe\Components\SubscribeForm")) {
         $fields->auto_subscribe->hidden = false;
         $fields->maillist_title->hidden = false;
         $fields->maillist_subscribe_label->hidden = false;

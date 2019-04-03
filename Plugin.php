@@ -1,4 +1,4 @@
-<?php namespace GrofGraf\ContactMe;
+<?php namespace Zorca\ContactMe;
 
 use Backend;
 use System\Classes\PluginBase;
@@ -18,7 +18,7 @@ class Plugin extends PluginBase
         return [
             'name'        => 'ContactMe',
             'description' => 'Contact Form plugin for OctoberCMS',
-            'author'      => 'GrofGraf',
+            'author'      => 'Zorca',
             'icon'        => 'icon-envelope'
         ];
     }
@@ -51,7 +51,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'GrofGraf\ContactMe\Components\ContactForm' => 'contactForm',
+            'Zorca\ContactMe\Components\ContactForm' => 'contactForm',
         ];
     }
 
@@ -63,7 +63,7 @@ class Plugin extends PluginBase
     public function registerPermissions()
     {
         return [
-            'grofgraf.contactme.settings' => [
+            'zorca.contactme.settings' => [
                 'tab' => 'ContactMe',
                 'label' => 'Contact Form Settings'
             ],
@@ -82,9 +82,9 @@ class Plugin extends PluginBase
         return [
             'contactme' => [
                 'label'       => 'ContactMe',
-                'url'         => Backend::url('grofgraf/contactme/mycontroller'),
+                'url'         => Backend::url('zorca/contactme/mycontroller'),
                 'icon'        => 'icon-envelope',
-                'permissions' => ['grofgraf.contactme.*'],
+                'permissions' => ['zorca.contactme.*'],
                 'order'       => 500,
             ],
         ];
@@ -97,9 +97,9 @@ class Plugin extends PluginBase
               'description' => 'Settings for contact form',
               'category'    => 'Marketing',
               'icon'        => 'icon-envelope',
-              'class'       => 'GrofGraf\ContactMe\Models\Settings',
+              'class'       => 'Zorca\ContactMe\Models\Settings',
               'order'       => 100,
-              'permissions' => ['grofgraf.contactme.settings']
+              'permissions' => ['zorca.contactme.settings']
           ]
       ];
     }
@@ -107,8 +107,8 @@ class Plugin extends PluginBase
     public function registerMailTemplates()
     {
         return [
-            'grofgraf.contactme::emails.message' => 'Mail template for contact from website',
-            'grofgraf.contactme::emails.auto-reply' => 'Mail template for auto reply',
+            'zorca.contactme::emails.message' => 'Mail template for contact from website',
+            'zorca.contactme::emails.auto-reply' => 'Mail template for auto reply',
         ];
     }
 }
